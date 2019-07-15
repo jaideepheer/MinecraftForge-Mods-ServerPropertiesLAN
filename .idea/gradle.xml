@@ -5,6 +5,18 @@
       <GradleProjectSettings>
         <option name="createEmptyContentRootDirectories" value="true" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/1.12.2+" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/1.12.2+" />
+          </set>
+        </option>
+        <option name="useAutoImport" value="true" />
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="createEmptyContentRootDirectories" value="true" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/1.14+" />
         <option name="modules">
           <set>
@@ -21,6 +33,18 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/1.8.9+" />
+          </set>
+        </option>
+        <option name="useAutoImport" value="true" />
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="createEmptyContentRootDirectories" value="true" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/1.9.4+" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/1.9.4+" />
           </set>
         </option>
         <option name="useAutoImport" value="true" />

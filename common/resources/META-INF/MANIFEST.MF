@@ -1,2 +1,2 @@
 Manifest-Version: 1.0
-FMLCorePlugin: JaideepSinghHeer.Minecraft.mod.ServerPropertiesLAN
+FMLCorePlugin: JaideepSinghHeer.forgemod.splan.ServerPropertiesLAN
