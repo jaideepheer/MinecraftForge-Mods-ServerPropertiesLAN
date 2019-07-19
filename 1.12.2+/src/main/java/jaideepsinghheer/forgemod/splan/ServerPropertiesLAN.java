@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
         name = ServerPropertiesLAN.MOD_NAME,
         version = ServerPropertiesLAN.VERSION
 )
-public class ServerPropertiesLAN_temp {
+public class ServerPropertiesLAN {
 
     public static final String MOD_ID = "ServerPropertiesLAN";
     public static final String MOD_NAME = "ServerPropertiesLAN";
