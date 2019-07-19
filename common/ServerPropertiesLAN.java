@@ -1,5 +1,5 @@
-package JaideepSinghHeer.forgemod.splan;
-
+import JaideepSinghHeer.forgemod.splan.common.ASM_BytecodeTransformer;
+import JaideepSinghHeer.forgemod.splan.common.Context;
 import JaideepSinghHeer.forgemod.splan.common.PropertyManagerClient;
 import JaideepSinghHeer.forgemod.splan.common.modinfo;
 import com.google.common.eventbus.EventBus;
@@ -36,12 +36,10 @@ import static JaideepSinghHeer.forgemod.splan.common.Context.LOGGER;
  *
  * We Edit the ByteCode of the {@link net.minecraft.util.HttpUtil} class to return our specified Port for LAN connections.
  * @see net.minecraft.util.HttpUtil for the getSuitableLanPort() method which returns a LAN port.
- *
  */
 
-//@Mod(modid = ServerPropertiesLAN.MODID,name=ServerPropertiesLAN.MODNAME, version = ServerPropertiesLAN.VERSION,clientSideOnly = true,acceptableRemoteVersions = "*",useMetadata = true)
 @SideOnly(Side.CLIENT)
-// We want our mod to load after the game is deobfuscated into SRG format by forge to make the ASM work.
+// We want our mod to load after the game is de-obfuscated into SRG format by forge to make the ASM work.
 @IFMLLoadingPlugin.SortingIndex(1001)
 public class ServerPropertiesLAN extends DummyModContainer implements IFMLLoadingPlugin
 {
@@ -120,13 +118,13 @@ public class ServerPropertiesLAN extends DummyModContainer implements IFMLLoadin
      */
     @Subscribe
     public void onServerStarting(FMLServerStartingEvent event) {
-        System.out.println("========================>> Server Starting !");
+        LOGGER.info("Server Starting !");
 
         // Get the current world directory.
         String worldrootdir = DimensionManager.getCurrentSaveRootDirectory()+File.separator;
 
         // Define the config files.
-        File local = new File(worldrootdir+"server.properties");
+        File local = new File(worldrootdir,"server.properties");
         File global = new File(Minecraft.getMinecraft().mcDataDir+File.separator+"config"+File.separator+"serverGlobalConfig.properties");
 
         // Use the appropriate config file.
@@ -171,7 +169,7 @@ public class ServerPropertiesLAN extends DummyModContainer implements IFMLLoadin
          + System.getProperty("line.separator")+"You can also delete this(or any properties) file to get it regenerated with default values.";
 
         // Read data from the config file and set the server config.
-        port = ServerProperties.getIntProperty("port", 0);
+        Context.port = ServerProperties.getIntProperty("port", 0);
         // ** Abandoned **
         //maxTickTime = ServerProperties.getLongProperty("maxTickTime",-1);
         server.setOnlineMode(ServerProperties.getBooleanProperty("online-mode", true));
@@ -271,7 +269,9 @@ public class ServerPropertiesLAN extends DummyModContainer implements IFMLLoadin
      */
     @Override
     public String[] getASMTransformerClass() {
-        return new String[]{SPLANtransformerPort.class.getCanonicalName()};
+        return new String[]{
+                ASM_BytecodeTransformer.class.getCanonicalName()
+        };
     }
 
     @Override
@@ -344,4 +344,3 @@ public class ServerPropertiesLAN extends DummyModContainer implements IFMLLoadin
         return null;
     }
 }
-

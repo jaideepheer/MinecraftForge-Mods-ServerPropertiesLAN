@@ -64,7 +64,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes  'FMLCorePlugin': 'JaideepSinghHeer.forgemod.splan.ServerPropertiesLAN',
+        attributes  'FMLCorePlugin': 'JaideepSinghHeer.forgemod.splan.common.ClassLoadingPlugin',
                 'ModSide': 'CLIENT'
     }
 }

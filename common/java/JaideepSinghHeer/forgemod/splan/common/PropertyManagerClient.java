@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.Properties;
 
 import static JaideepSinghHeer.forgemod.splan.common.Context.LOGGER;
+import static JaideepSinghHeer.forgemod.splan.common.Context.thisCoreModLocation;
 
 /**
  * This Class handles all the IO of the server.properties file in the world's folder.
@@ -23,36 +24,42 @@ public class PropertyManagerClient
         this.comment = "Minecraft server properties";
         if (propertiesFile.exists())
         {
-            FileInputStream fileinputstream = null;
-            try
-            {
-                fileinputstream = new FileInputStream(propertiesFile);
-                this.serverProperties.load((InputStream)fileinputstream);
-            }
-            catch (Exception exception)
-            {
-                LOGGER.warn("Failed to load {}", new Object[] {propertiesFile, exception});
-                this.generateNewProperties();
-            }
-            finally
-            {
-                if (fileinputstream != null)
-                {
-                    try
-                    {
-                        fileinputstream.close();
-                    }
-                    catch (IOException var11)
-                    {
-                        ;
-                    }
-                }
-            }
+            loadProperties();
         }
         else
         {
             LOGGER.warn("{} does not exist", new Object[] {propertiesFile});
             this.generateNewProperties();
+        }
+    }
+
+    public void loadProperties()
+    {
+        File propertiesFile = this.serverPropertiesFile;
+        FileInputStream fileinputstream = null;
+        try
+        {
+            fileinputstream = new FileInputStream(propertiesFile);
+            this.serverProperties.load((InputStream)fileinputstream);
+        }
+        catch (Exception exception)
+        {
+            LOGGER.warn("Failed to load {}", new Object[] {propertiesFile, exception});
+            this.generateNewProperties();
+        }
+        finally
+        {
+            if (fileinputstream != null)
+            {
+                try
+                {
+                    fileinputstream.close();
+                }
+                catch (IOException var11)
+                {
+                    ;
+                }
+            }
         }
     }
 
@@ -78,7 +85,6 @@ public class PropertyManagerClient
     public void saveProperties()
     {
         FileOutputStream fileoutputstream = null;
-
         try
         {
             fileoutputstream = new FileOutputStream(this.serverPropertiesFile);

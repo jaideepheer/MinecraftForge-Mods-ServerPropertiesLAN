@@ -1,4 +1,4 @@
-package JaideepSinghHeer.forgemod.splan;
+package JaideepSinghHeer.forgemod.splan.common;
 
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.util.HttpUtil;
@@ -13,21 +13,17 @@ import org.objectweb.asm.tree.*;
 
 /**
  * This Class acts as the {@link IClassTransformer} for the ByteCode Editing during Compilation.
- * It is used on all the ByteCode files and is hence given a chance to Edit any ByteCode file.
  * Every ByteCode file before compilation undergoes Transformation by all the Classes derived from {@link IClassTransformer}
- * and registered as TransformerClasses by the {@link net.minecraftforge.fml.relauncher.IFMLLoadingPlugin} Classes.
- *
- * Hence, once registered, this Class can Edit the ByteCode of any Minecraft Class during Compilation.
- * <Probably> :)
- *
+ * and registered as TransformerClasses by the {@link net.minecraftforge.fml.relauncher.IFMLLoadingPlugin} of this mod.
+ * Once registered, this Class can Edit the ByteCode of any class during Compilation.
  */
 @SideOnly(Side.CLIENT)
-public class SPLANtransformerPort implements IClassTransformer {
+public class ASM_BytecodeTransformer implements IClassTransformer {
     /**
      * This is the main and only function called during Compilation for ByteCode Manipulation.
      * It changes the {@link HttpUtil#getSuitableLanPort()} function.
-     * It changes the 'serversocket = new ServerSocket(0)' statement to 'serversocket = new ServerSocket(SPLANtransformerPort.getPort())'.
-     * Thus using the {@link SPLANtransformerPort#getPort()} function.
+     * It changes the 'serversocket = new ServerSocket(0)' statement to 'serversocket = new ServerSocket(ASM_BytecodeTransformer.getPort())'.
+     * Thus using the {@link ASM_BytecodeTransformer#getPort()} function.
      *
      * @param name This is the obfuscated name of the class.
      * @param transformedName It is the canonical Class name of the Class whose ByteCode is currently being compiled.
@@ -37,7 +33,6 @@ public class SPLANtransformerPort implements IClassTransformer {
      */
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
-        //System.out.println("--------------------> Trying Injection (PORT) !");
         if(transformedName.equals("net.minecraft.util.HttpUtil"))
         {
             // Found Target Class
@@ -102,8 +97,8 @@ public class SPLANtransformerPort implements IClassTransformer {
      */
     public static int getPort()
     {
-        System.out.println("Setting Port : "+ServerPropertiesLAN.instance.port);
-        int port = ServerPropertiesLAN.instance.port;
+        int port = Context.port;
+        System.out.println("Setting Port : "+ port);
         return port>0&&port<=65535?port:0;
     }
 }
