@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.Properties;
 
 import static JaideepSinghHeer.forgemod.splan.common.Context.LOGGER;
-import static JaideepSinghHeer.forgemod.splan.common.Context.thisCoreModLocation;
 
 /**
  * This Class handles all the IO of the server.properties file in the world's folder.
@@ -205,4 +204,8 @@ public class PropertyManagerClient
         this.serverProperties.remove(key);
     }
 
+    @Override
+    public String toString() {
+        return serverPropertiesFile.toString();
+    }
 }

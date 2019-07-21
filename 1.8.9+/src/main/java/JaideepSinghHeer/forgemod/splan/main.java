@@ -3,10 +3,9 @@ package JaideepSinghHeer.forgemod.splan;
 import JaideepSinghHeer.forgemod.splan.common.Context;
 import JaideepSinghHeer.forgemod.splan.common.PropertyManagerClient;
 import JaideepSinghHeer.forgemod.splan.common.modinfo;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 import java.io.File;
 
@@ -25,10 +24,9 @@ public class main {
     }
 
     @Mod.EventHandler
-    public void onServerStarting(FMLServerAboutToStartEvent event) {
-        // TODO: get current save root dir, this gives "null"
-        File worldrootdir = new File(DimensionManager.getCurrentSaveRootDirectory()+"");
-        PropertyManagerClient toApply = Context.getPropertiesToApply(worldrootdir, new File(Context.mcLocation.getPath()+File.separator+"config"));
+    public void onServerStarting(FMLServerStartingEvent event) {
+        File worldrootdir = event.getServer().getEntityWorld().getSaveHandler().getWorldDirectory();
+        PropertyManagerClient toApply = Context.getPropertiesToApply(worldrootdir, new File(Context.mcLocation.getPath(),"config"));
         LOGGER.info("Selected properties file: "+toApply);
     }
 }

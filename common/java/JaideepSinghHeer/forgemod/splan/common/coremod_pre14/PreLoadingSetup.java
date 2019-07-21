@@ -1,4 +1,4 @@
-package JaideepSinghHeer.forgemod.splan.common;
+package JaideepSinghHeer.forgemod.splan.common.coremod_pre14;
 
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import net.minecraftforge.fml.relauncher.IFMLCallHook;
@@ -10,8 +10,8 @@ public class PreLoadingSetup implements IFMLCallHook {
     private static Map<String, Object> fmlInjectedData;
     @Override
     public void injectData(Map<String, Object> data) {
-        Context.classloader = (LaunchClassLoader) data.get("classLoader");
-        Context.deobfuscationFileName = (String) data.get("deobfuscationFileName");
+        CoremodContext.classloader = (LaunchClassLoader) data.get("classLoader");
+        CoremodContext.deobfuscationFileName = (String) data.get("deobfuscationFileName");
     }
     // FML calls this function before minecraft starts.
     @Override

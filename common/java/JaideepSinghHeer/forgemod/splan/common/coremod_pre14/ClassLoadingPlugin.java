@@ -1,5 +1,6 @@
-package JaideepSinghHeer.forgemod.splan.common;
+package JaideepSinghHeer.forgemod.splan.common.coremod_pre14;
 
+import JaideepSinghHeer.forgemod.splan.common.Context;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 
 import javax.annotation.Nullable;
@@ -23,8 +24,8 @@ public class ClassLoadingPlugin implements IFMLLoadingPlugin {
     @Override
     public void injectData(Map<String, Object> data) {
         Context.mcLocation = (File) data.get("mcLocation");
-        Context.runtimeDeobfuscationEnabled = (Boolean) data.get("runtimeDeobfuscationEnabled");
-        Context.thisCoreModLocation = (File) data.get("coremodLocation");
+        CoremodContext.runtimeDeobfuscationEnabled = (Boolean) data.get("runtimeDeobfuscationEnabled");
+        CoremodContext.thisCoreModLocation = (File) data.get("coremodLocation");
     }
 
     @Override

@@ -1,6 +1,5 @@
 package JaideepSinghHeer.forgemod.splan.common;
 
-import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
@@ -15,15 +14,9 @@ public final class Context {
     public static PropertyManagerClient globalProperties;
     public static PropertyManagerClient localProperties = null;
 
-    // FML injected data
-    public static File mcLocation;
-    public static boolean runtimeDeobfuscationEnabled;
-    public static File thisCoreModLocation;
-    public static LaunchClassLoader classloader;
-    public static String deobfuscationFileName;
-
     // STATIC CONTEXT
     // metadata
+    public static File mcLocation;
     public static String ModContainerClassName;
 
     // defaults
